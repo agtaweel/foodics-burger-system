@@ -18,6 +18,9 @@ class AvailableQuantity implements ValidationRule
     {
         $products = request()->get('products');
         for ($i=0;$i<sizeof($products) ;$i++){
+            if(!isset($products[$i]['product_id']) || !isset($products[$i]['quantity'])){
+                return;
+            }
             $product = Product::query()->where('id','=',$products[$i]['product_id'])->first();
             if(!$product)
                 return;

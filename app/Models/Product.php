@@ -8,7 +8,10 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
 /**
- * @property Collection $ingredients
+ * @property \Illuminate\Database\Eloquent\Collection<Ingredient> $ingredients
+ * @property int $id
+ * @property \Carbon\Carbon $created_at
+ * @property \Carbon\Carbon $updated_at
  */
 class Product extends Model
 {
