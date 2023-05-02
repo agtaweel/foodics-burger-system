@@ -16,7 +16,7 @@ class IngredientProductSeeder extends Seeder
     {
         $ingredients = Ingredient::all();
         for ($i=0;$i<10;$i++){
-            $product = Product::query()->create();
+            $product = Product::factory()->create();
             $product->ingredients()->attach($ingredients->random(rand(1,3)),['weight'=>rand(10,100)]);
         }
     }

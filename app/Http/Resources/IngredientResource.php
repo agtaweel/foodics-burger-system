@@ -18,6 +18,7 @@ class IngredientResource extends JsonResource
             'stock'      =>  $this->stock,
             'percentage' =>  $this->percentage,
             'unit'       =>  $this->unit,
+            'weight'     =>  $this->whenPivotLoaded('ingredient_product',$this->pivot->weight),
             'created'    =>  $this->created_at->timestamp,
             'updated'    =>  $this->updated_at->timestamp,
         ];

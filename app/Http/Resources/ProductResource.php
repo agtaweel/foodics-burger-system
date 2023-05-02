@@ -18,6 +18,10 @@ class ProductResource extends JsonResource
     {
         return [
             'id'            =>  $this->id,
+            'name'          =>  $this->name,
+            'price'         =>  $this->price,
+            'order_price'   =>  $this->hasPivotLoaded('order_product')?$this->pivot->price:null,
+            'quantity'      =>  $this->hasPivotLoaded('order_product')?$this->pivot->quantity:null,
             'created'       =>  $this->created_at->timestamp,
             'updated'       =>  $this->updated_at->timestamp,
             'ingredients'   =>  IngredientResource::collection($this->ingredients),

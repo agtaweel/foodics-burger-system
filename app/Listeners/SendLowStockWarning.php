@@ -26,6 +26,6 @@ class SendLowStockWarning implements ShouldQueue
     public function handle(LowStockIngredients $event): void
     {
         $ingredients = $event->ingredients;
-        Mail::to(env('MERCHANT_MAIL'))->send(new SendLowStockMail($ingredients));
+        Mail::to(env('MERCHANT_MAIL','ahmedtaweel96@gmail.com'),)->send(new SendLowStockMail($ingredients));
     }
 }

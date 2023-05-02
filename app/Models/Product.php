@@ -10,6 +10,8 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 /**
  * @property \Illuminate\Database\Eloquent\Collection<Ingredient> $ingredients
  * @property int $id
+ * @property string $name
+ * @property float $price
  * @property \Carbon\Carbon $created_at
  * @property \Carbon\Carbon $updated_at
  */
@@ -22,6 +24,6 @@ class Product extends Model
     }
 
     public function orders():BelongsToMany{
-        return $this->belongsToMany(Order::class)->withPivot('quantity');
+        return $this->belongsToMany(Order::class)->withPivot(['quantity','price']);
     }
 }

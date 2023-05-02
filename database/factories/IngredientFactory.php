@@ -17,9 +17,8 @@ class IngredientFactory extends Factory
     public function definition(): array
     {
         $ingredients = ['beef','onion','cheese','chicken'];
-        $ids = [3,1,2,4];
         return [
-            'id'=>$this->faker->unique()->randomElement($ids),
+            'id'=>$this->faker->randomNumber(),
             'name'=>$this->faker->randomElement($ingredients),
             'stock'=>$this->faker->numerify(),
             'percentage'=>100,

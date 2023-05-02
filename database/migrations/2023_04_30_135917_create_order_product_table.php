@@ -17,6 +17,7 @@ return new class extends Migration
             $table->foreignIdFor(Product::class)->cascadeOnUpdate()->nullOnDelete();
             $table->foreignIdFor(Order::class)->cascadeOnUpdate()->nullOnDelete();
             $table->integer('quantity');
+            $table->double('price');
         });
     }
 

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Events\LowStockIngredients;
 use App\Http\Resources\OrderResource;
 use App\Models\Order;
+use App\Models\Product;
 use App\Rules\AvailableQuantity;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
@@ -24,8 +25,11 @@ class OrderController extends Controller
         }
         try{
             $order = Order::create();
-            $order->products()->attach($request->get('products'));
-            $low_stock_ingredient = $this->updateIngredentStock($order);
+            foreach ($request->get('products') as $item){
+                $product = Product::query()->find($item['product_id']);
+                $order->products()->attach($product,['price'=>$product->price,'quantity'=>$item['quantity']]);
+            }
+            $low_stock_ingredient = $this->updateIngredientStock($order);
         }
         catch (\Throwable $e){
             throw new \Exception($e->getMessage(),500,$e);
@@ -42,7 +46,7 @@ class OrderController extends Controller
         return response()->json(new OrderResource($order));
     }
 
-    private function updateIngredentStock(Order $order):array{
+    private function updateIngredientStock(Order $order):array{
 
         foreach ($order->products as $product){
             foreach ($product->ingredients as $ingredient){
