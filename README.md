@@ -1,9 +1,15 @@
 # Foodics Burger System Task
 
 # Requirements
-## Main Models ( Product , Ingredient , Order )
-## Main Endpoint ( Create Order) 
-## Main Events ( Notify Merchant when an ingredient stock reaches 50% or less ) 
+## Main Models 
+- Product
+- Ingredient
+- Order
+## Main Endpoint
+- Create Order
+- List Products
+## Main Events 
+- Notify Merchant when an ingredient stock reaches 50% or less 
 
 
 # Install 
@@ -85,37 +91,6 @@ Get paginated and filtered products list from the system
             ]
         },
         {
-            "id": 2,
-            "name": "Beef Burger",
-            "price": 32.91,
-            "order_price": null,
-            "quantity": null,
-            "created": 1683196735,
-            "updated": 1683196735,
-            "ingredients": [
-                {
-                    "id": 2,
-                    "name": "cheese",
-                    "stock": 5000,
-                    "percentage": 100,
-                    "unit": "g",
-                    "weight": 50,
-                    "created": 1683196735,
-                    "updated": 1683196735
-                },
-                {
-                    "id": 3,
-                    "name": "onion",
-                    "stock": 1000,
-                    "percentage": 100,
-                    "unit": "g",
-                    "weight": 50,
-                    "created": 1683196735,
-                    "updated": 1683196735
-                }
-            ]
-        },
-        {
             "id": 3,
             "name": "Beef Burger",
             "price": 52.88,
@@ -141,192 +116,6 @@ Get paginated and filtered products list from the system
                     "percentage": 100,
                     "unit": "g",
                     "weight": 24,
-                    "created": 1683196735,
-                    "updated": 1683196735
-                }
-            ]
-        },
-        {
-            "id": 4,
-            "name": "Chicken Burger",
-            "price": 59.03,
-            "order_price": null,
-            "quantity": null,
-            "created": 1683196735,
-            "updated": 1683196735,
-            "ingredients": [
-                {
-                    "id": 1,
-                    "name": "beef",
-                    "stock": 20000,
-                    "percentage": 100,
-                    "unit": "g",
-                    "weight": 17,
-                    "created": 1683196735,
-                    "updated": 1683196735
-                },
-                {
-                    "id": 2,
-                    "name": "cheese",
-                    "stock": 5000,
-                    "percentage": 100,
-                    "unit": "g",
-                    "weight": 17,
-                    "created": 1683196735,
-                    "updated": 1683196735
-                },
-                {
-                    "id": 3,
-                    "name": "onion",
-                    "stock": 1000,
-                    "percentage": 100,
-                    "unit": "g",
-                    "weight": 17,
-                    "created": 1683196735,
-                    "updated": 1683196735
-                }
-            ]
-        },
-        {
-            "id": 5,
-            "name": "Chicken Burger",
-            "price": 55.57,
-            "order_price": null,
-            "quantity": null,
-            "created": 1683196735,
-            "updated": 1683196735,
-            "ingredients": [
-                {
-                    "id": 1,
-                    "name": "beef",
-                    "stock": 20000,
-                    "percentage": 100,
-                    "unit": "g",
-                    "weight": 77,
-                    "created": 1683196735,
-                    "updated": 1683196735
-                },
-                {
-                    "id": 2,
-                    "name": "cheese",
-                    "stock": 5000,
-                    "percentage": 100,
-                    "unit": "g",
-                    "weight": 77,
-                    "created": 1683196735,
-                    "updated": 1683196735
-                }
-            ]
-        },
-        {
-            "id": 6,
-            "name": "Beef Burger",
-            "price": 39.37,
-            "order_price": null,
-            "quantity": null,
-            "created": 1683196735,
-            "updated": 1683196735,
-            "ingredients": [
-                {
-                    "id": 1,
-                    "name": "beef",
-                    "stock": 20000,
-                    "percentage": 100,
-                    "unit": "g",
-                    "weight": 92,
-                    "created": 1683196735,
-                    "updated": 1683196735
-                },
-                {
-                    "id": 2,
-                    "name": "cheese",
-                    "stock": 5000,
-                    "percentage": 100,
-                    "unit": "g",
-                    "weight": 92,
-                    "created": 1683196735,
-                    "updated": 1683196735
-                }
-            ]
-        },
-        {
-            "id": 7,
-            "name": "Chicken Burger",
-            "price": 43.92,
-            "order_price": null,
-            "quantity": null,
-            "created": 1683196735,
-            "updated": 1683196735,
-            "ingredients": [
-                {
-                    "id": 2,
-                    "name": "cheese",
-                    "stock": 5000,
-                    "percentage": 100,
-                    "unit": "g",
-                    "weight": 22,
-                    "created": 1683196735,
-                    "updated": 1683196735
-                }
-            ]
-        },
-        {
-            "id": 8,
-            "name": "Beef Burger",
-            "price": 82.64,
-            "order_price": null,
-            "quantity": null,
-            "created": 1683196735,
-            "updated": 1683196735,
-            "ingredients": [
-                {
-                    "id": 1,
-                    "name": "beef",
-                    "stock": 20000,
-                    "percentage": 100,
-                    "unit": "g",
-                    "weight": 46,
-                    "created": 1683196735,
-                    "updated": 1683196735
-                }
-            ]
-        },
-        {
-            "id": 9,
-            "name": "Chicken Burger",
-            "price": 64.04,
-            "order_price": null,
-            "quantity": null,
-            "created": 1683196735,
-            "updated": 1683196735,
-            "ingredients": [
-                {
-                    "id": 1,
-                    "name": "beef",
-                    "stock": 20000,
-                    "percentage": 100,
-                    "unit": "g",
-                    "weight": 80,
-                    "created": 1683196735,
-                    "updated": 1683196735
-                },
-                {
-                    "id": 2,
-                    "name": "cheese",
-                    "stock": 5000,
-                    "percentage": 100,
-                    "unit": "g",
-                    "weight": 80,
-                    "created": 1683196735,
-                    "updated": 1683196735
-                },
-                {
-                    "id": 3,
-                    "name": "onion",
-                    "stock": 1000,
-                    "percentage": 100,
-                    "unit": "g",
-                    "weight": 80,
                     "created": 1683196735,
                     "updated": 1683196735
                 }
