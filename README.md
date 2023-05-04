@@ -1,6 +1,6 @@
 # Foodics Burger System Task
 
-# Requirements** 
+# Requirements
 ## Main Models ( Product , Ingredient , Order )
 ## Main Endpoint ( Create Order) 
 ## Main Events ( Notify Merchant when an ingredient stock reaches 50% or less ) 
