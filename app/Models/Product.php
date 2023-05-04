@@ -2,10 +2,11 @@
 
 namespace App\Models;
 
+use App\ModelFilters\ProductFilter;
+use EloquentFilter\Filterable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
-use Illuminate\Database\Eloquent\Relations\HasMany;
 
 /**
  * @property \Illuminate\Database\Eloquent\Collection<Ingredient> $ingredients
@@ -17,7 +18,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  */
 class Product extends Model
 {
-    use HasFactory;
+    use HasFactory,Filterable;
 
     public function ingredients():BelongsToMany{
         return $this->belongsToMany(Ingredient::class)->withPivot(['weight']);
@@ -25,5 +26,9 @@ class Product extends Model
 
     public function orders():BelongsToMany{
         return $this->belongsToMany(Order::class)->withPivot(['quantity','price']);
+    }
+    public function modelFilter(): string
+    {
+        return $this->provideFilter(ProductFilter::class);
     }
 }
