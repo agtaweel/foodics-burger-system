@@ -29,15 +29,18 @@ class OrderController extends Controller
                 $product = Product::query()->find($item['product_id']);
                 $order->products()->attach($product,['price'=>$product->price,'quantity'=>$item['quantity']]);
             }
-            $low_stock_ingredient = $this->updateIngredientStock($order);
+            $low_stock_ingredients = $this->updateIngredientStock($order);
         }
         catch (\Throwable $e){
             throw new \Exception($e->getMessage(),500,$e);
         }
 
-        if(!empty($low_stock_ingredient)){
+        if(!empty($low_stock_ingredients)){
             try{
-                LowStockIngredients::dispatch($low_stock_ingredient);
+                LowStockIngredients::dispatch($low_stock_ingredients);
+                foreach ($low_stock_ingredients as $ingredient){
+                    $ingredient->update(['has_low_stock_email'=>true]);
+                }
         }
             catch (\Throwable $e){
                 error_log($e->getMessage());
@@ -54,11 +57,11 @@ class OrderController extends Controller
                 $available_stock = $ingredient->stock-($product->pivot->quantity*$ingredient->pivot->weight);
                 $percentage = $available_stock*100/$original_stock;
                 $ingredient->update(['stock'=>$available_stock,'percentage'=>$percentage]);
-                if($percentage<50){
-                    $low_stock_ingredient []= $ingredient;
+                if($percentage<50 && !$ingredient->has_low_stock_email){
+                    $low_stock_ingredients []= $ingredient;
                 }
             }
         }
-        return $low_stock_ingredient??[];
+        return $low_stock_ingredients??[];
     }
 }

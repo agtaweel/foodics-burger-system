@@ -17,6 +17,7 @@ return new class extends Migration
             $table->double('stock');
             $table->double('percentage');
             $table->string('unit')->default('g');
+            $table->boolean('has_low_stock_email')->default(false);
             $table->timestamps();
         });
     }

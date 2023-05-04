@@ -12,6 +12,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
  * @property string         $name
  * @property double         $stock
  * @property string         $unit
+ * @property boolean        $has_low_stock_email
  * @property \Carbon\Carbon $created_at
  * @property \Carbon\Carbon $updated_at
  */
@@ -19,7 +20,7 @@ class Ingredient extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['stock','percentage'];
+    protected $fillable = ['stock','percentage','has_low_stock_email'];
     public function products():BelongsToMany{
         return $this->belongsToMany(Product::class)->withPivot(['weight']);
     }

@@ -7,7 +7,7 @@ use App\Mail\SendLowStockMail;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Support\Facades\Mail;
 
-class SendLowStockWarning implements ShouldQueue
+class SendLowStockWarning
 {
     /**
      * Create the event listener.
