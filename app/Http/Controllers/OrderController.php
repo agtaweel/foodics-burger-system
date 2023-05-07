@@ -9,6 +9,7 @@ use App\Models\Product;
 use App\Rules\AvailableQuantity;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 
 class OrderController extends Controller
@@ -23,6 +24,7 @@ class OrderController extends Controller
         if ($validator->fails()){
             return response()->json($validator->errors()->toArray(),Response::HTTP_UNPROCESSABLE_ENTITY);
         }
+        DB::beginTransaction();
         try{
             $order = Order::create();
             foreach ($request->get('products') as $item){
@@ -30,8 +32,11 @@ class OrderController extends Controller
                 $order->products()->attach($product,['price'=>$product->price,'quantity'=>$item['quantity']]);
             }
             $low_stock_ingredients = $this->updateIngredientStock($order);
+
+            DB::commit();
         }
         catch (\Throwable $e){
+            DB::rollBack();
             throw new \Exception($e->getMessage(),500,$e);
         }
 
