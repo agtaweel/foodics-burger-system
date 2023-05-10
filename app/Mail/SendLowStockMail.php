@@ -6,20 +6,17 @@ use App\Models\Ingredient;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
-use Illuminate\Mail\Mailables\Content;
-use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Queue\SerializesModels;
-use Illuminate\Support\HtmlString;
 
-class SendLowStockMail extends Mailable
+class SendLowStockMail extends Mailable implements ShouldQueue
 {
     use Queueable, SerializesModels;
 
     /**
      * Create a new message instance.
      */
-    public function __construct(protected array $ingredients)
+    public function __construct(protected Ingredient $ingredient)
     {
         //
     }
@@ -28,12 +25,12 @@ class SendLowStockMail extends Mailable
     {
         $this->boot();
 
-        $mail = $this->subject("Low Stock Ingredients")
+        $mail = $this->subject("Low Stock Ingredient ({$this->ingredient->name})")
             ->html(
                 (new MailMessage)
                     ->line("Hi, ")
-                    ->line("Kindly note that the following ingredients are running out. Please take the necessary actions.")
-                    ->line(new HtmlString($this->getIngredientsDetials()))
+                    ->line("Kindly note that the {$this->ingredient->name} are running out of stock as the percentage now is {$this->ingredient->percentage}%.")
+                    ->line("Please take the necessary actions.")
                     ->render()->toHtml()
             );
         return $mail;
@@ -45,16 +42,5 @@ class SendLowStockMail extends Mailable
             env('MERCHANT_FROM_EMAIL', 'no-reply@gmail.com'),
             env('MERCHANT__FROM_NAME', 'NO_REPLY')
         );
-    }
-
-    protected function getIngredientsDetials(): string
-    {
-        $details = array_reduce($this->ingredients,function($carry, $ingredient){
-            $carry .= sprintf("<tr><td>%s</td><td>%s</td><td>%s</td></tr>",
-                $ingredient->name,$ingredient->stock,round($ingredient->percentage,2).'%');
-            return $carry;
-        }, "<tr><th>Name</th><th>Available Weight</th><th>Available Percentage</th></tr>");
-
-        return "<table class=\"table table-bordered\" style=\"width: 100%;\"><tbody>$details</tbody></table>";
     }
 }
