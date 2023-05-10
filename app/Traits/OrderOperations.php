@@ -4,7 +4,7 @@ namespace App\Traits;
 
 use App\Models\Product;
 
-trait OrderOperation
+trait OrderOperations
 {
     public function updateStock(){
         foreach ($this->products as $product){

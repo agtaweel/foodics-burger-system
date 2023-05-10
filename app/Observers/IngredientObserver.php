@@ -23,13 +23,7 @@ class IngredientObserver
     public function updated(Ingredient $ingredient): void
     {
         if($ingredient->percentage < 50 && !$ingredient->has_low_stock_email){
-            try{
-                Mail::to(env('MERCHANT_MAIL','ahmedtaweel96@gmail.com'),)->send(new SendLowStockMail($ingredient));
-                $ingredient->update(['has_low_stock_email'=>true]);
-            }
-            catch (\Throwable $throwable){
-                error_log($throwable->getTraceAsString());
-            }
+            $ingredient->sendLowStockMail();
         }
     }
 

@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-use App\Traits\OrderOperation;
+use App\Traits\OrderOperations;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
@@ -15,7 +15,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
  */
 class Order extends Model
 {
-    use HasFactory, OrderOperation;
+    use HasFactory, OrderOperations;
 
     public function products():BelongsToMany{
         return $this->belongsToMany(Product::class)->withPivot(['quantity','price']);

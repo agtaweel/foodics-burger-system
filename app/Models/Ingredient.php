@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Traits\IngredientOperations;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
@@ -18,7 +19,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
  */
 class Ingredient extends Model
 {
-    use HasFactory;
+    use HasFactory, IngredientOperations;
 
     protected $fillable = ['stock','percentage','has_low_stock_email'];
     public function products():BelongsToMany{
